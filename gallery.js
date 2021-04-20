@@ -17,6 +17,8 @@ animate();
 
 var mLastFrameTime = 0;
 var mWaitTime = 5000; //time in ms
+function mRhule(){
+
 function animate() {
     requestAnimFrame( animate );
 	var currentTime = new Date().getTime();
@@ -33,28 +35,46 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-	//Add code here to access the #slideShow element.
-	//Access the img element and replace its source
-	//with a new image from your images array which is loaded
-	//from the JSON string
+    document.getELementById('photo').src = mImages[mCurrentIndex].img;
+    var location=document.getElementsByClassName("location")[0].innerHTML = "location" + mImages[mCurrentIndex].location;
+  	var description=document.getElementByClassName('description')[0].innerHTML = "description";  + mImages[mCurrentIndex].description;
+    var date=document.getElementByClassName('date')[0].innerHTML= "date" + mImages[mCurrentIndex].date;  	//4. either
 	console.log('swap photo');
 }
 
 // Counter for the mImages array
-var mCurrentIndex = 0;
+var mCurrentIndex = 0
 
+var mJson;
+
+var mUrl = '../images.json';
 // XMLHttpRequest variable
 var mRequest = new XMLHttpRequest();
+function retJson(){
+
+  mRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          mJson = JSON.parse(mRequest.responseText);
+      }
+  };
+  mRequest.open("GET", "../images.json", true);
+  mRequest.send();
+}
 
 // Array holding GalleryImage objects (see below).
 var mImages = [];
 
 // Holds the retrived JSON information
-var mJson;
+
+
+
+
+
+
 
 // URL for the JSON to load by default
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
-var mUrl = '../images.json';
+
 
 
 //You can optionally use the following function as your event callback for loading the source of Images from your json data (for HTMLImageObject).
@@ -86,4 +106,8 @@ function GalleryImage() {
   var date=document.getElementByClass('date');
   var img;
 	//4. either a String (src URL) or an an HTMLImageObject (bitmap of the photo. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
+}
+
+
+
 }
