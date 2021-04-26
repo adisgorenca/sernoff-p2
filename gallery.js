@@ -17,7 +17,6 @@ animate();
 
 var mLastFrameTime = 0;
 var mWaitTime = 5000; //time in ms
-function mRhule(){
 
 function animate() {
     requestAnimFrame( animate );
@@ -63,11 +62,11 @@ function retJson(){
   mRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           mJson = JSON.parse(mRequest.responseText);
+          iterateJSON();
       }
   };
   mRequest.open("GET", "../images.json", true);
   mRequest.send();
-  iterateJSON(mJSON);
 }
 
 // Array holding GalleryImage objects (see below).
@@ -117,13 +116,9 @@ mImage.img = mJson.images[x].imgLocation;
 };
 function GalleryImage() {
 	//implement me as an object to hold the following data about an image:
-	var location=document.getElementByClass("location");
-	var description=document.getElementByClass('description');
-  var date=document.getElementByClass('date');
+	var location;
+	var description;
+  var date;
   var img;
 	//4. either a String (src URL) or an an HTMLImageObject (bitmap of the photo. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
-}
-
-
-
 }
