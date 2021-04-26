@@ -35,11 +35,19 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
+  if (mCurrentIndex >= mImages.length) {
+        mCurrentIndex = 0;
+    }
+    if (mCurrentIndex < 0) {
+        mCurrentIndex = mImages.length-1;
+    }
     document.getELementById('photo').src = mImages[mCurrentIndex].img;
     var location=document.getElementsByClassName("location")[0].innerHTML = "location" + mImages[mCurrentIndex].location;
-  	var description=document.getElementByClassName('description')[0].innerHTML = "description";  + mImages[mCurrentIndex].description;
+  	var description=document.getElementByClassName('description')[0].innerHTML = "description" + mImages[mCurrentIndex].description;
     var date=document.getElementByClassName('date')[0].innerHTML= "date" + mImages[mCurrentIndex].date;  	//4. either
 	console.log('swap photo');
+mLastFrameTime=0;
+  mCurrentIndex += 1;
 }
 
 // Counter for the mImages array
@@ -59,13 +67,13 @@ function retJson(){
   };
   mRequest.open("GET", "../images.json", true);
   mRequest.send();
+  iterateJSON(mJSON);
 }
 
 // Array holding GalleryImage objects (see below).
 var mImages = [];
 
 // Holds the retrived JSON information
-
 
 
 
@@ -87,18 +95,26 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 }
 
 $(document).ready( function() {
-
-	// This initially hides the photos' metadata information
+	retJSON();
 	$('.details').eq(0).hide();
 
 });
 
 window.addEventListener('load', function() {
 
-	console.log('window loaded');
-
+console.log('window loaded');
 }, false);
 
+function iterateJSON(){
+for(x=0; mJSON.length; x++)
+{
+mImages[x] = newGalleryImage();
+mImage.location = mJson.images[x].imgLocation;
+mImage.description = mJson.images[x].imgLocation;
+mImage.date = mJson.images[x].imgLocation;
+mImage.img = mJson.images[x].imgLocation;
+};
+};
 function GalleryImage() {
 	//implement me as an object to hold the following data about an image:
 	var location=document.getElementByClass("location");
