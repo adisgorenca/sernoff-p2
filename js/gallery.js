@@ -85,7 +85,7 @@ function retJson(){
 var mImages = [];
 
 // Holds the retrived JSON information
-
+var mJson;
 
 
 
