@@ -25,7 +25,7 @@ function animate() {
 		mLastFrameTime = currentTime;
 	}
 
-	if ((currentTime - mLastFrameTime) > mWaitTime) {
+	if (currentTime - mLastFrameTime) > mWaitTime) {
 		swapPhoto();
 		mLastFrameTime = currentTime;
 	}
@@ -54,7 +54,7 @@ var mCurrentIndex = 0
 
 var mJson;
 
-var mUrl = '/images.json';images.
+var mUrl = 'images.json';
 
 // XMLHttpRequest variable
 var mRequest = new XMLHttpRequest();
@@ -105,7 +105,6 @@ window.addEventListener('load', function() {
 
 console.log('window loaded');
 }, false);
-
 function iterateJSON(){
 for(x=0; mJSON.images.length; x++)
 {
