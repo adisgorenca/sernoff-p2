@@ -66,7 +66,7 @@ function retJson(){
           iterateJSON();
       }
   };
-  mRequest.open("GET", "/images.json", true);
+  mRequest.open("GET", "images.json", true);
   mRequest.send();
 }
 
@@ -98,23 +98,23 @@ $(document).ready( function() {
   if(
 	retJSON();
 	$('.details').eq(0).hide();
-
 });
 
 window.addEventListener('load', function() {
 
 console.log('window loaded');
 }, false);
+
 function iterateJSON(){
 for(x=0; mJSON.images.length; x++)
 {
-mImages[x] = newGalleryImage();
-mImage.location = mJson.images[ximages.].imgLocation;
-mImage.description = mJson.images[x].imgLocatio
-mImage.date = mJson.images[x].imgLocation;
-mImage.img = mJson.images[x].imgLocation;
-};
-};
+mImages[x] = new GalleryImages();
+mImages.location = mJson.images[x].imgLocation;
+mImages.description = mJson.images[x].imgDescription;
+mImages.date = mJson.images[x].imgDate;
+mImages.img = mJson.images[x].imgPath;
+}
+}
 function GalleryImage() {
 	//implement me as an object to hold the following data about an image:
 	var location;
