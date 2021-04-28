@@ -34,19 +34,30 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-  if (mCurrentIndex >= mImages.length) {
-        mCurrentIndex = 0;
-    }
-    if (mCurrentIndex < 0) {
-        mCurrentIndex = mImages.length-1;
-    }
-    document.getELementById('photo').src = mImages[mCurrentIndex].img;
-    var location=document.getElementsByClassName("location")[0].innerHTML = "location" + mImages[mCurrentIndex].location;
-  	var description=document.getElementByClassName('description')[0].innerHTML = "description" + mImages[mCurrentIndex].description;
-    var date=document.getElementByClassName('date')[0].innerHTML= "date" + mImages[mCurrentIndex].date;  	//4. either
-	console.log('swap photo');
-mLastFrameTime=0;
+
+  if(mCurrentIndex >= mImages.length)
+  {
+    mCurrentIndex = 0;
+  }
+
+  if(mCurrentIndex < 0) {
+    mCurrentIndex = mImages.length-1;
+  }
+
+  document.getElementById('photo').src = mImages[mCurrentIndex].img;
+
+  var location = document.getElementsByClassName('location')[0];
+  location.innerHTML = "Location: " + mImages[mCurrentIndex].location;
+
+  var description = document.getElementsByClassName('description')[0];
+  description.innerHTML = "Description: " + mImages[mCurrentIndex].description;
+
+  var date = document.getElementsByClassName('date')[0];
+  date.innerHTML = "Date: " + mImages[mCurrentIndex].date;
+
+  mLastFrameTime = 0;
   mCurrentIndex += 1;
+	console.log('swap photo');
 }
 
 // Counter for the mImages array
@@ -105,21 +116,20 @@ window.addEventListener('load', function() {
 console.log('window loaded');
 }, false);
 
-function iterateJSON(){
-for(x=0; mJSON.images.length; x++)
-{
-mImages[x] = new GalleryImages();
-mImages.location = mJson.images[x].imgLocation;
-mImages.description = mJson.images[x].imgDescription;
-mImages.date = mJson.images[x].imgDate;
-mImages.img = mJson.images[x].imgPath;
+ffunction iterateJSON() {
+  for(x = 0; x < mJson.images.length; x++)
+  {
+    mImages[x] = new GalleryImage();
+    mImages[x].location = mJson.images[x].imgLocation;
+    mImages[x].description = mJson.images[x].description;
+    mImages[x].date = mJson.images[x].date;
+    mImages[x].img = mJson.images[x].imgPath;
+  }
 }
-}
+
 function GalleryImage() {
-	//implement me as an object to hold the following data about an image:
 	var location;
 	var description;
-  var date;
+	var date;
   var img;
-	//4. either a String (src URL) or an an HTMLImageObject (bitmap of the photo. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 }
